@@ -7,12 +7,12 @@ pipeline {
        sh "./gradlew clean"
     }
   }
-    stage('build') {
+    stage('Unit & Integration test') {
         steps {
-            sh "./gradlew build"
+            sh "./gradlew build test"
         }
     }
-    stage('SonarQube analysis') {
+    stage('SonarQube') {
       steps {
         script {
           scannerHome = tool 'SonarQubeScanner'
