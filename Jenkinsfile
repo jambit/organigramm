@@ -10,6 +10,13 @@ pipeline {
     stage('Unit & Integration test') {
         steps {
             sh "./gradlew build test"
+            post{
+                failure {
+                    script{
+                        error "Failed, exiting now..."
+                    }
+                }
+            }
         }
     }
     stage('SonarQube') {
@@ -20,7 +27,17 @@ pipeline {
         withSonarQubeEnv('Sonar') {
           sh "${scannerHome}/bin/sonar-scanner"
         }
+        post{
+            failure {
+                script{
+                    error "Failed, exiting now..."
+                }
+            }
+        }
       }
+    }
+    stage('Deploy') {
+
     }
   }
 }
