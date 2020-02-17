@@ -1,4 +1,4 @@
-package com.jambit.organigramm.config;
+package com.jambit.organigramm.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
